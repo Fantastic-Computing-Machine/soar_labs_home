@@ -29,3 +29,4 @@ The dev server runs at `http://localhost:5173/` with hot module reload enabled.
 - Vite 7
 - Tailwind CSS (via utility classes and animations)
 - Framer Motion, Lenis, and custom interaction components
+- 
