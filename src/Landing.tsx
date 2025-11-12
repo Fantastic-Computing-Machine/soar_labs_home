@@ -31,7 +31,7 @@ export default function Landing() {
           style={{ position: "relative", height: "300px" }}
         >
           <TextPressure
-            text="  GELP  "
+            text="SOAR LABS"
             flex={true}
             alpha={false}
             stroke={false}

@@ -21,7 +21,7 @@ export default function Navbar() {
           <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[var(--glass-alt-surface)] text-[color:var(--text-primary)] shadow-inner shadow-white/30">
             <img src={billa} alt="logo" className="h-5 w-5" />
           </span>
-          <span>Gelp</span>
+          <span>SOAR LABS</span>
         </a>
 
         <div className="relative z-10 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-end sm:gap-5">

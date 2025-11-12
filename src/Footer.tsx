@@ -5,7 +5,7 @@ import { motion, useInView } from "motion/react";
 
 // import useNewsLetter, { ClientData } from '@/lab/hooks/useNewsLetter'
 
-const brandText = "GELP";
+const brandText = "SOAR LABS";
 
 const sitemapLinks = [
   { href: "#home", label: "Home" },
@@ -240,7 +240,7 @@ const Footer = () => {
           </div>
           <div className="flex md:flex-row flex-col-reverse gap-3 justify-between py-2">
             <span className="font-medium">
-              &copy; 2025 GELP. All Rights Reserved.
+              &copy; 2025 SOAR LABS. All Rights Reserved.
             </span>
             <a href="#" className="font-semibold">
               Privacy Policy
