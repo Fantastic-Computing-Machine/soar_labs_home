@@ -13,7 +13,7 @@ const sitemapLinks = [
   { href: "#workflow", label: "Workflow" },
   { href: "#use-cases", label: "Use Cases" },
   { href: "#pricing", label: "Pricing" },
-  { href: "#contact", label: "Contact" },
+  { href: "https://docs.soarlabs.tech", label: "Docs" },
 ] as const;
 
 const Footer = () => {
