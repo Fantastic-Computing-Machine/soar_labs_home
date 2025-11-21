@@ -7,12 +7,12 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
           <div className="col-span-2 lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
+            <a href="/" className="flex items-center gap-2 mb-4" aria-label="Soar Labs home">
               <div className="w-6 h-6 bg-brand-600 rounded flex items-center justify-center text-white font-bold text-xs">S</div>
               <span className="font-display text-xl font-bold text-slate-900 tracking-tight">
                 Soar Labs
               </span>
-            </div>
+            </a>
             <p className="text-slate-500 mt-4 max-w-sm text-sm leading-relaxed">
               The enterprise-grade Retrieval Augmented Generation platform for building intelligent, context-aware AI applications at scale.
             </p>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const FeaturesSection: React.FC = () => {
   return (
-    <section className="py-24 bg-white/40 backdrop-blur-3xl relative overflow-hidden" id="features">
+    <section className="py-24 bg-white/40 backdrop-blur-3xl relative overflow-hidden" id="product">
       {/* Decorative Blurs */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-brand-50/60 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent-50/60 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 pointer-events-none"></div>
