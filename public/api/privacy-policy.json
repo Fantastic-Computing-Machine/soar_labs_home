@@ -1,0 +1,23 @@
+[
+  {
+    "title": "What We Collect",
+    "body": "Describe the categories of information gathered from customers, connectors, and application logs in this section. Replace this placeholder copy with the official policy text."
+  },
+  {
+    "title": "How We Use Information",
+    "body": "Summarize retention periods, processing activities, and security practices to give visitors a clear sense of how data flows through the platform."
+  },
+  {
+    "title": "Your Rights & Choices",
+    "body": "Outline the steps customers can take to access, export, or delete data along with the preferred contact path for privacy requests.",
+    "subPoints": [
+      "Right to Access",
+      "Right to Rectify",
+      "Right to Delete"
+    ]
+  },
+  {
+    "title": "Contact",
+    "body": "Questions? Email connect@soarlabs.tech and the team will respond promptly."
+  }
+]

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, ArrowUpRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,9 +16,8 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm' : 'bg-transparent'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -35,7 +34,7 @@ const Navbar: React.FC = () => {
           {/* Desktop Menu */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
-              {['Product', 'Solutions', 'Developers', 'Pricing'].map((item) => (
+              {['Product', 'Solutions',].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -44,28 +43,40 @@ const Navbar: React.FC = () => {
                   {item}
                 </a>
               ))}
-               <a
-                  href="https://docs.soarlabs.tech"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-600 hover:text-brand-600 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1"
-                >
-                  Docs <ArrowUpRight size={14} />
-                </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-600 hover:text-brand-600 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1"
+              >
+                Pricing (soon)
+              </a>
+              <a
+                href="https://docs.soarlabs.tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-600 hover:text-brand-600 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1"
+              >
+                Developers <ArrowUpRight size={14} />
+              </a>
             </div>
           </div>
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
-             <a 
+            {/* <a
                 href="https://console.soarlabs.tech"
                 className="text-slate-600 hover:text-brand-600 font-medium text-sm"
              >
                 Log in
-             </a>
-            <button className="bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all transform hover:scale-105 shadow-lg shadow-brand-500/30">
+             </a> */}
+            <a
+              href="https://console.soarlabs.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all transform hover:scale-105 shadow-lg shadow-brand-500/30"
+            >
               Get Started
-            </button>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -100,18 +111,18 @@ const Navbar: React.FC = () => {
                   {item}
                 </a>
               ))}
-               <a
-                  href="https://docs.soarlabs.tech"
-                  className="text-slate-600 hover:text-brand-600 hover:bg-slate-50 block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Documentation
-                </a>
-               <a
-                  href="https://console.soarlabs.tech"
-                  className="text-slate-600 hover:text-brand-600 hover:bg-slate-50 block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Log in
-                </a>
+              <a
+                href="https://docs.soarlabs.tech"
+                className="text-slate-600 hover:text-brand-600 hover:bg-slate-50 block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Documentation
+              </a>
+              <a
+                href="https://console.soarlabs.tech"
+                className="text-slate-600 hover:text-brand-600 hover:bg-slate-50 block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Log in
+              </a>
               <button className="w-full text-left mt-4 bg-brand-600 text-white px-4 py-3 rounded-md font-semibold shadow-md">
                 Get Started Free
               </button>

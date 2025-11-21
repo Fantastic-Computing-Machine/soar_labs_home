@@ -1,10 +1,10 @@
 # GEMINI.md
 
-This document provides guidance for interacting with the SOAR Labs RAG Platform codebase.
+This document provides guidance for interacting with the SOAR Labs Retrieval Augmented Generation Platform codebase.
 
 ## Project Overview
 
-This project is a single-page marketing and informational website for the SOAR Labs RAG Platform. It is built using React and Vite, with TypeScript for type safety. The website features a modern, animated design with a custom cursor and animated background. It is composed of several sections that describe the platform's features, use cases, and benefits.
+This project is a single-page marketing and informational website for the SOAR Labs Retrieval Augmented Generation Platform. It is built using React and Vite, with TypeScript for type safety. The website features a modern, animated design with a custom cursor and animated background. It is composed of several sections that describe the platform's features, use cases, and benefits.
 
 **Key Technologies:**
 

@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Acceptable Use",
+    "body": "Explain how customers may interact with the Retrieval Augmented Generation platform, including prohibited activities and enforcement actions.",
+    "subPoints": [
+      "Platform usage rules",
+      "Prohibited activities",
+      "Enforcement actions"
+    ]
+  },
+  {
+    "title": "Responsibilities",
+    "body": "Summarize what Soar Labs commits to deliver and what customers agree to provide, such as data accuracy and access management."
+  },
+  {
+    "title": "Billing & Termination",
+    "body": "Describe billing cadence, refunds, and the conditions that might lead to suspension or termination. Replace this text with your legal language."
+  },
+  {
+    "title": "Contact",
+    "body": "Need help? Email connect@soarlabs.tech for questions about these terms."
+  }
+]

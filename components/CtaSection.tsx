@@ -1,24 +1,12 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { motion, useScroll, useTransform, useReducedMotion, useMotionValue } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const CtaSection: React.FC = () => {
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
   const prefersReducedMotion = useReducedMotion();
-  const staticOffset = useMotionValue(0);
-
-  // Parallax values
-  const dynamicY1 = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const dynamicY2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const y1 = prefersReducedMotion ? staticOffset : dynamicY1;
-  const y2 = prefersReducedMotion ? staticOffset : dynamicY2;
 
   return (
-    <section ref={containerRef} className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-white relative overflow-hidden">
       
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="relative rounded-[3rem] p-12 md:p-20 text-center text-white overflow-hidden shadow-2xl shadow-brand-500/20 group">
@@ -30,21 +18,25 @@ const CtaSection: React.FC = () => {
             <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
             
             {/* Floating Shapes with Parallax */}
-            <motion.div style={{ y: y1 }} className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                <motion.div 
+            {!prefersReducedMotion && (
+              <>
+                <motion.div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                  <motion.div
                     animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
                     className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-white/10 rounded-full blur-3xl"
-                />
-            </motion.div>
+                  />
+                </motion.div>
 
-            <motion.div style={{ y: y2 }} className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                <motion.div 
+                <motion.div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                  <motion.div
                     animate={{ y: [0, 30, 0], x: [0, -20, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
                     className="absolute bottom-[-20%] right-[-10%] w-96 h-96 bg-accent-400/20 rounded-full blur-3xl"
-                />
-            </motion.div>
+                  />
+                </motion.div>
+              </>
+            )}
 
             <div className="relative z-10">
                 <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight">
