@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Prevent search engines from indexing build output directories or config files.
+Disallow: /dist/
+Disallow: /node_modules/
+Disallow: /soar-labs---rag-platform.zip
+
+# Provide sitemap location for better crawl coverage.
+Sitemap: https://soarlabs.tech/sitemap.xml
