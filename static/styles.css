@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #020617;
+    color: #f8fafc;
+    overflow-x: hidden;
+}
+
+.font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+.glass-panel {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* New Glass Bubble Styles */
+.glass-bubble {
+    background: rgba(2, 6, 23, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.glass-bubble.scrolled {
+    background: rgba(2, 6, 23, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+}
+
+.glow-text {
+    text-shadow: 0 0 40px rgba(56, 189, 248, 0.5);
+}
+
+.grid-bg {
+    background-size: 50px 50px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Animation Utilities */
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-slow {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 3s infinite;
+}
+
+/* Flow Animations */
+@keyframes flow-beam {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.animate-flow-beam {
+    animation: flow-beam 3s infinite linear;
+}
+
+@keyframes flow-packet-move {
+    0% {
+        left: 0%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.animate-flow-packet {
+    position: absolute;
+    animation: flow-packet-move 2s infinite linear;
+}
+
+/* Vertical Scroll Animation */
+@keyframes scroll-vertical {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+.animate-scroll-vertical {
+    animation: scroll-vertical 10s linear infinite;
+}
+
+/* Horizontal Scroll Animation */
+@keyframes scroll-horizontal {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-scroll-horizontal {
+    display: flex;
+    gap: 1rem;
+    animation: scroll-horizontal 10s linear infinite;
+    width: max-content;
+}
+
+.mask-gradient-y {
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.mask-gradient-x {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Animated Beam Styles */
+.beam-path {
+    stroke-dasharray: 100 1000;
+    stroke-dashoffset: 1100;
+    animation: beam-flow 3s linear infinite;
+}
+
+.beam-path-reverse {
+    stroke-dasharray: 100 1000;
+    stroke-dashoffset: -100;
+    animation: beam-flow-reverse 3s linear infinite;
+}
+
+@keyframes beam-flow {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes beam-flow-reverse {
+    to {
+        stroke-dashoffset: 1100;
+    }
+}
