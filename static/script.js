@@ -1,75 +1,186 @@
-// Initialize Icons
-lucide.createIcons();
-
-// Theme Toggle Logic
-const themeToggleBtn = document.getElementById('theme-toggle');
-const themeIcon = document.getElementById('theme-icon');
-
-function setTheme(isLight) {
-    if (isLight) {
-        document.body.classList.add('light-mode');
-        themeIcon.setAttribute('data-lucide', 'moon');
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.body.classList.remove('light-mode');
-        themeIcon.setAttribute('data-lucide', 'sun');
-        localStorage.setItem('theme', 'dark');
+// Initialize Icons lazily so we don't block parsing if the icon library isn't ready yet
+const bootstrapIcons = () => {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
     }
-    lucide.createIcons();
-}
+};
 
-if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-        const isLight = !document.body.classList.contains('light-mode');
-        setTheme(isLight);
-    });
+bootstrapIcons();
+window.addEventListener('load', bootstrapIcons, { once: true });
 
-    // Init Theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        setTheme(true);
-    }
-}
+// Centralized JavaScript Logic
+(() => {
+    const applyInitialTheme = () => {
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.classList.remove('bg-[#020617]');
+                loader.style.backgroundColor = '#fdfbf7';
+            }
+            const loaderBar = document.getElementById('loader-bar');
+            if (loaderBar) {
+                loaderBar.classList.remove('bg-white');
+                loaderBar.classList.add('bg-black');
+                if (loaderBar.parentElement) {
+                    loaderBar.parentElement.classList.remove('bg-slate-800');
+                    loaderBar.parentElement.classList.add('bg-slate-300');
+                }
+            }
+        }
+    };
 
-// Loader Logic
-document.addEventListener("DOMContentLoaded", () => {
-    const loader = document.getElementById('loader');
-    const bar = document.getElementById('loader-bar');
-    const percent = document.getElementById('loader-percent');
-    const body = document.body;
+    applyInitialTheme();
 
-    // Lock scroll
-    body.style.overflow = 'hidden';
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const backToTopBtn = document.getElementById('back-to-top');
 
-    let progress = 0;
-    const duration = 1000; // 1 second
-    const intervalTime = 10;
-    const increment = 100 / (duration / intervalTime);
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
 
-    const interval = setInterval(() => {
-        progress += increment;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-            // Fade out
-            setTimeout(() => {
+        if (backToTopBtn) {
+            const toggleBackToTop = () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            };
+
+            window.addEventListener('scroll', toggleBackToTop, { passive: true });
+            toggleBackToTop();
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        if (!themeToggleBtn) return;
+
+        const newBtn = themeToggleBtn.cloneNode(true);
+        themeToggleBtn.parentNode.replaceChild(newBtn, themeToggleBtn);
+
+        newBtn.addEventListener('click', async (e) => {
+            if (!document.startViewTransition) {
+                toggleTheme();
+                return;
+            }
+
+            const x = e.clientX;
+            const y = e.clientY;
+            const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+
+            const transition = document.startViewTransition(toggleTheme);
+            await transition.ready;
+
+            document.documentElement.animate(
+                {
+                    clipPath: [
+                        `circle(0px at ${x}px ${y}px)`,
+                        `circle(${endRadius}px at ${x}px ${y}px)`,
+                    ],
+                },
+                {
+                    duration: 500,
+                    easing: 'ease-in',
+                    pseudoElement: '::view-transition-new(root)',
+                }
+            );
+        });
+
+        function toggleTheme() {
+            const isLight = document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+
+            const icon = document.getElementById('theme-icon');
+            if (icon && window.lucide) {
+                const iconName = isLight ? 'moon' : 'sun';
+                const wrapper = document.createElement('span');
+                wrapper.innerHTML = `<i data-lucide="${iconName}" id="theme-icon" class="w-5 h-5"></i>`;
+                lucide.createIcons({ root: wrapper });
+                icon.replaceWith(wrapper.firstElementChild);
+            }
+        }
+
+        // Loader Logic
+        const loader = document.getElementById('loader');
+        const bar = loader ? document.getElementById('loader-bar') : null;
+        const percent = loader ? document.getElementById('loader-percent') : null;
+        const body = document.body;
+
+        if (loader && bar && percent) {
+            const duration = 1000; // 1 second dramatic reveal
+            body.style.overflow = 'hidden';
+
+            const finish = () => {
                 loader.style.transition = 'opacity 0.5s ease';
                 loader.style.opacity = '0';
-                body.style.overflow = ''; // Unlock scroll
+                body.style.overflow = '';
                 setTimeout(() => {
                     loader.style.display = 'none';
                 }, 500);
-            }, 100);
+            };
+
+            const animate = (start) => {
+                const step = (now) => {
+                    const elapsed = now - start;
+                    const progress = Math.min((elapsed / duration) * 100, 100);
+                    bar.style.width = `${progress}%`;
+                    percent.innerText = `${Math.round(progress)}%`;
+
+                    if (elapsed < duration) {
+                        requestAnimationFrame(step);
+                    } else {
+                        finish();
+                    }
+                };
+
+                requestAnimationFrame(step);
+            };
+
+            requestAnimationFrame((start) => animate(start));
+        } else {
+            body.style.overflow = '';
         }
 
-        bar.style.width = `${progress}%`;
-        percent.innerText = `${Math.round(progress)}%`;
-    }, intervalTime);
+        // Lazy initialize Draggable Diagram when the section is in view
+        const pipelineContainer = document.getElementById('pipeline-container');
+        if (pipelineContainer) {
+            const bootPipeline = () => {
+                if (pipelineContainer.dataset.initialized) return;
+                pipelineContainer.dataset.initialized = 'true';
+                initDraggableDiagram();
+            };
 
-    // Draggable Diagram Logic
-    initDraggableDiagram();
-});
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            obs.disconnect();
+                            bootPipeline();
+                        }
+                    });
+                }, { rootMargin: '0px 0px -20% 0px' });
+                observer.observe(pipelineContainer);
+            } else if ('requestIdleCallback' in window) {
+                requestIdleCallback(bootPipeline);
+            } else {
+                setTimeout(bootPipeline, 0);
+            }
+        }
+    });
+})();
 
 // Navbar Logic
 const bubbles = document.querySelectorAll('.glass-bubble');
@@ -92,6 +203,10 @@ function initDraggableDiagram() {
     const animatedBeamsGroup = document.getElementById('animated-beams');
     const labelsGroup = document.getElementById('path-labels');
     const markersGroup = document.getElementById('connection-markers');
+
+    if (!container || !svg || !staticTracksGroup || !animatedBeamsGroup || !labelsGroup || !markersGroup) {
+        return;
+    }
 
     const nodes = [
         'node-user', 'node-data', 'node-query', 'node-chunk',

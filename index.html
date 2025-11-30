@@ -43,6 +43,15 @@
         <link rel="canonical" href="https://soarlabs.tech/" />
         <link rel="icon" type="image/png"
             href="https://raw.githubusercontent.com/ZEROCONNECT/Image-captioner/main/66a4e2693749ab0009c7a641.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preload" as="style"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+            onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+        </noscript>
 
         <!-- JSON-LD Structured Data -->
         <script type="application/ld+json">
@@ -99,22 +108,14 @@
                 gtag('config', 'G-NYEDXVL17C');
             </script>
         <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="https://unpkg.com/lucide@latest" defer></script>
 
         <!-- Load CSS lazily -->
+        <link rel="preload" href="static/styles.css" as="style">
         <link rel="stylesheet" href="static/styles.css" media="print" onload="this.media='all'">
         <noscript>
             <link rel="stylesheet" href="static/styles.css">
         </noscript>
-
-        <style>
-            ::view-transition-old(root),
-            ::view-transition-new(root) {
-                animation: none;
-                mix-blend-mode: normal;
-            }
-        
-        </style>
 
     </head>
 
@@ -160,7 +161,7 @@
                 <div class="glass-bubble pointer-events-auto px-4 py-2 rounded-full flex items-center gap-2">
                     <div class="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-lg">
                         <img src="https://raw.githubusercontent.com/ZEROCONNECT/Image-captioner/main/66a4e2693749ab0009c7a641.png"
-                            alt="meow">
+                            alt="meow" decoding="async" fetchpriority="high">
                     </div>
                     <span class="font-bold text-lg tracking-tight hidden sm:block">Soar Labs</span>
                 </div>
@@ -279,7 +280,7 @@
         </section>
 
         <!-- Features Grid -->
-        <section id="features" class="py-16 md:py-24 relative">
+        <section id="features" class="py-16 md:py-24 relative lazy-section">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="mb-16">
                     <h2 class="text-3xl md:text-5xl font-bold mb-6">Built for scale,<br />designed for <span
@@ -290,7 +291,7 @@
 
                     <!-- Card 1: Main Feature -->
                     <div
-                        class="md:col-span-2 lg:col-span-2 row-span-2 glass-panel rounded-3xl p-8 relative overflow-hidden group border border-white/5 hover:scale-[1.01] transition-transform duration-300">
+                        class="reveal md:col-span-2 lg:col-span-2 row-span-2 glass-panel rounded-3xl p-8 relative overflow-hidden group border border-white/5 hover:scale-[1.01] transition-transform duration-300">
                         <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity">
                             <i data-lucide="network" class="w-48 h-48"></i>
                         </div>
@@ -316,7 +317,7 @@
 
                     <!-- Card 2: Speed -->
                     <div
-                        class="glass-panel rounded-3xl p-8 border border-white/5 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+                        class="reveal glass-panel rounded-3xl p-8 border border-white/5 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
                         <i data-lucide="zap" class="w-8 h-8 text-yellow-400 mb-4"></i>
                         <div>
                             <h3 class="text-xl font-bold mb-1">Sub-100ms</h3>
@@ -326,7 +327,7 @@
 
                     <!-- Card 3: Security -->
                     <div
-                        class="glass-panel rounded-3xl p-8 border border-white/5 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+                        class="reveal glass-panel rounded-3xl p-8 border border-white/5 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
                         <i data-lucide="lock" class="w-8 h-8 text-red-400 mb-4"></i>
                         <div>
                             <h3 class="text-xl font-bold mb-1">Enterprise Grade</h3>
@@ -336,7 +337,7 @@
                     </div>
                     <!-- Card 4: Integration -->
                     <div
-                        class="md:col-span-2 glass-panel rounded-3xl p-8 border border-white/5 flex items-center justify-between relative overflow-hidden hover:scale-[1.01] transition-transform duration-300">
+                        class="reveal md:col-span-2 glass-panel rounded-3xl p-8 border border-white/5 flex items-center justify-between relative overflow-hidden hover:scale-[1.01] transition-transform duration-300">
                         <div class="relative z-10 max-w-[50%]">
                             <h3 class="text-2xl font-bold mb-2">Universal Ingestion</h3>
                             <p class="text-slate-400 max-w-sm">PDF, DOCX, Notion, Slack. <br />If it has text, we can
@@ -394,7 +395,7 @@
 
                     <!-- Card 5: Models -->
                     <div
-                        class="md:col-span-1 glass-panel rounded-3xl p-8 border border-white/5 relative overflow-hidden hover:scale-[1.02] transition-transform duration-300 flex flex-col">
+                        class="reveal md:col-span-1 glass-panel rounded-3xl p-8 border border-white/5 relative overflow-hidden hover:scale-[1.02] transition-transform duration-300 flex flex-col">
                         <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/20 rounded-full blur-[50px]">
                         </div>
                         <h3 class="text-xl font-bold mb-4 z-10">Model Agnostic</h3>
@@ -436,7 +437,7 @@
 
                     <!-- Card 7: Hybrid Search -->
                     <div
-                        class="glass-panel rounded-3xl p-8 border border-white/5 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+                        class="reveal glass-panel rounded-3xl p-8 border border-white/5 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
                         <i data-lucide="layers" class="w-8 h-8 text-orange-400 mb-4"></i>
                         <div>
                             <h3 class="text-xl font-bold mb-1">Hybrid Search</h3>
@@ -446,7 +447,7 @@
 
                     <!-- Card 8: Observability -->
                     <div
-                        class="glass-panel rounded-3xl p-8 border border-white/5 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+                        class="reveal glass-panel rounded-3xl p-8 border border-white/5 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
                         <i data-lucide="activity" class="w-8 h-8 text-pink-400 mb-4"></i>
                         <div>
                             <h3 class="text-xl font-bold mb-1">Observability</h3>
@@ -471,7 +472,7 @@
             </section>
 
         <!-- Use Cases Section (Ported from v1) -->
-        <section id="use-cases" class="py-16 md:py-24 relative">
+        <section id="use-cases" class="py-16 md:py-24 relative lazy-section">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-5xl font-bold mb-6">Built for <span class="text-indigo-400">Every Use
@@ -484,7 +485,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Use Case 1: Customer Support -->
                     <div
-                        class="glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
+                        class="reveal glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
                         <div
                             class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
                             <i data-lucide="headset" class="w-6 h-6"></i>
@@ -499,7 +500,7 @@
 
                     <!-- Use Case 2: Knowledge Retrieval -->
                     <div
-                        class="glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
+                        class="reveal glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
                         <div
                             class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
                             <i data-lucide="search" class="w-6 h-6"></i>
@@ -513,7 +514,7 @@
 
                     <!-- Use Case 3: Document Analysis -->
                     <div
-                        class="glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
+                        class="reveal glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
                         <div
                             class="w-12 h-12 bg-teal-500/20 rounded-xl flex items-center justify-center text-teal-400 mb-6 group-hover:scale-110 transition-transform">
                             <i data-lucide="file-text" class="w-6 h-6"></i>
@@ -525,7 +526,7 @@
                     </div>
                     <!-- Use Case 4: Training & Onboarding -->
                     <div
-                        class="glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
+                        class="reveal glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
                         <div
                             class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center text-orange-400 mb-6 group-hover:scale-110 transition-transform">
                             <i data-lucide="graduation-cap" class="w-6 h-6"></i>
@@ -539,7 +540,7 @@
 
                     <!-- Use Case 5: Legal Research -->
                     <div
-                        class="glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
+                        class="reveal glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
                         <div
                             class="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center text-violet-400 mb-6 group-hover:scale-110 transition-transform">
                             <i data-lucide="scale" class="w-6 h-6"></i>
@@ -552,7 +553,7 @@
                     </div>
                     <!-- Use Case 6: Content Creation -->
                     <div
-                        class="glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
+                        class="reveal glass-panel p-8 rounded-3xl border border-white/5 hover:-translate-y-1 transition-transform duration-300 group">
                         <div
                             class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition-transform">
                             <i data-lucide="pen-tool" class="w-6 h-6"></i>
@@ -568,7 +569,7 @@
         </section>
 
         <!-- Architecture / How it Works -->
-        <section id="how-it-works" class="py-16 md:py-24 relative overflow-hidden bg-slate-900/30">
+        <section id="how-it-works" class="py-16 md:py-24 relative overflow-hidden bg-slate-900/30 lazy-section">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-20">
                     <h2 class="text-3xl md:text-5xl font-bold mb-6">Advanced RAG Architecture</h2>
@@ -753,7 +754,7 @@
                 </section>
 
         <!-- Pricing -->
-        <section id="pricing" class="py-16 md:py-24">
+        <section id="pricing" class="py-16 md:py-24 lazy-section">
             <div class="max-w-7xl mx-auto px-6 text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-6">Pricing</h2>
                 <p class="text-slate-400 mb-2">Start free, scale indefinitely.</p>
@@ -761,7 +762,7 @@
 
                 <div class="grid md:grid-cols-2 gap-8">
                     <!-- Starter -->
-                    <div class="relative p-8 rounded-3xl border border-indigo-500 bg-indigo-900/10 text-left flex flex-col">
+                    <div class="reveal relative p-8 rounded-3xl border border-indigo-500 bg-indigo-900/10 text-left flex flex-col">
                         <div
                             class="absolute -top-4 left-1/2 -translate-x-1/2 bg-indigo-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
                             Start Free</div>
@@ -780,7 +781,7 @@
                             Starter</a>
                     </div>
                     <!-- Pro -->
-                    <div class="relative p-8 rounded-3xl border border-white/10 glass-panel text-left flex flex-col">
+                    <div class="reveal relative p-8 rounded-3xl border border-white/10 glass-panel text-left flex flex-col">
                         <h3 class="text-xl font-bold mb-2">Pro</h3>
                         <div class="text-4xl font-bold mb-6">Coming soon
                             <!-- <span class="text-lg text-slate-500 font-normal">/mo</span> -->
@@ -830,7 +831,7 @@
                         <div class="flex items-center gap-2 font-bold text-xl tracking-tighter mb-6">
                             <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white overflow-hidden">
                                 <img src="https://raw.githubusercontent.com/ZEROCONNECT/Image-captioner/main/66a4e2693749ab0009c7a641.png"
-                                    alt="Soar Labs Logo" class="w-full h-full object-cover">
+                                    alt="Soar Labs Logo" class="w-full h-full object-cover" loading="lazy" decoding="async">
                             </div>
                             Soar Labs
                         </div>
@@ -871,74 +872,11 @@
             </div>
             </footer>
 
+        <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+            <i data-lucide="arrow-up" class="w-5 h-5"></i>
+        </button>
+
         <!-- Load JS lazily -->
         <script src="static/script.js" defer></script>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const themeToggleBtn = document.getElementById('theme-toggle');
-                if (!themeToggleBtn) return;
-
-                // Clone button to remove existing listeners from static/script.js
-                const newBtn = themeToggleBtn.cloneNode(true);
-                themeToggleBtn.parentNode.replaceChild(newBtn, themeToggleBtn);
-
-                newBtn.addEventListener('click', async (e) => {
-                    // Fallback for browsers that don't support View Transitions
-                    if (!document.startViewTransition) {
-                        toggleTheme();
-                        return;
-                    }
-
-                    const x = e.clientX;
-                    const y = e.clientY;
-                    const endRadius = Math.hypot(
-                        Math.max(x, innerWidth - x),
-                        Math.max(y, innerHeight - y)
-                    );
-
-                    const transition = document.startViewTransition(() => {
-                        toggleTheme();
-                    });
-
-                    await transition.ready;
-
-                    // Animate the circular clip-path
-                    document.documentElement.animate(
-                        {
-                            clipPath: [
-                                `circle(0px at ${x}px ${y}px)`,
-                                `circle(${endRadius}px at ${x}px ${y}px)`,
-                            ],
-                        },
-                        {
-                            duration: 500,
-                            easing: 'ease-in',
-                            pseudoElement: '::view-transition-new(root)',
-                        }
-                    );
-                });
-
-                function toggleTheme() {
-                    const isLight = document.body.classList.toggle('light-mode');
-                    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-
-                    // Handle Icon Toggle
-                    const icon = document.getElementById('theme-icon');
-                    if (icon && window.lucide) {
-                        const iconName = isLight ? 'moon' : 'sun';
-                        const temp = document.createElement('div');
-                        temp.innerHTML = `<i data-lucide="${iconName}" id="theme-icon" class="w-5 h-5"></i>`;
-                        lucide.createIcons({ root: temp });
-                        const newIcon = temp.firstElementChild;
-                        if (newIcon) {
-                            icon.replaceWith(newIcon);
-                        }
-                    }
-                }
-            });
-        </script>
-
     </body>
-
 </html>
