@@ -107,6 +107,15 @@
             <link rel="stylesheet" href="static/styles.css">
         </noscript>
 
+        <style>
+            ::view-transition-old(root),
+            ::view-transition-new(root) {
+                animation: none;
+                mix-blend-mode: normal;
+            }
+        
+        </style>
+
     </head>
 
     <body class="antialiased text-slate-200">
@@ -159,11 +168,13 @@
                 <!-- Right Side Actions -->
                 <div class="flex items-center gap-3 pointer-events-auto">
                     <!-- Bubble 2: CTA -->
-                    <div class="glass-bubble px-6 p-1.5 pr-2 sm:pr-4 rounded-full flex items-center gap-3">
-                        <a href="#features" class="hover:text-white hover:scale-105 transition-all duration-200">Features</a>
-                        <a href="#how-it-works" class="hover:text-white hover:scale-105 transition-all duration-200">Engine</a>
-                        <a href="#pricing" class="hover:text-white hover:scale-105 transition-all duration-200">Pricing</a>
-                        <span class="mx-4">|</span>
+                    <div class="glass-bubble px-2 sm:px-6 p-1.5 pr-2 sm:pr-4 rounded-full flex items-center gap-3">
+                        <a href="#features"
+                            class="hidden md:block hover:text-white hover:scale-105 transition-all duration-200">Features</a>
+                        <a href="#how-it-works"
+                            class="hidden md:block hover:text-white hover:scale-105 transition-all duration-200">Engine</a>
+                        <a href="#pricing" class="hidden md:block hover:text-white hover:scale-105 transition-all duration-200">Pricing</a>
+                        <span class="hidden md:block mx-4">|</span>
                         <a href="https://console.soarlabs.tech"
                             class="bg-white text-black px-4 py-2 rounded-full text-sm font-bold hover:bg-slate-200 transition-colors flex items-center gap-2">
                             <span style="white-space:nowrap">Get Started</span>
@@ -240,7 +251,7 @@
                     <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
                     Open for Funding Partners
                 </div>
-                <h1 class="fade-in delay-100 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+                <h1 class="fade-in delay-100 text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
                     Your Knowledge, <br />
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-400 to-indigo-400 glow-text">
                         Intellectually Indexed.
@@ -268,7 +279,7 @@
         </section>
 
         <!-- Features Grid -->
-        <section id="features" class="py-24 relative">
+        <section id="features" class="py-16 md:py-24 relative">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="mb-16">
                     <h2 class="text-3xl md:text-5xl font-bold mb-6">Built for scale,<br />designed for <span
@@ -422,17 +433,6 @@
                             </div>
                     </div>
 
-                    <!-- Card 6: CTA -->
-                    <a href="https://docs.soarlabs.tech"
-                        class="md:col-span-1 glass-panel rounded-3xl p-8 border border-white/5 flex items-center justify-center group cursor-pointer hover:bg-indigo-600/20 transition-colors">
-                        <div class="text-center">
-                            <div
-                                class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                                <i data-lucide="arrow-right" class="w-6 h-6"></i>
-                            </div>
-                            <span class="font-bold">View API Docs</span>
-                        </div>
-                    </a>
 
                     <!-- Card 7: Hybrid Search -->
                     <div
@@ -454,12 +454,24 @@
                         </div>
                     </div>
 
+                    <!-- Card 6: CTA -->
+                    <a href="https://docs.soarlabs.tech"
+                        class="reveal md:col-span-1 glass-panel rounded-3xl p-8 border border-white/5 flex items-center justify-center group cursor-pointer hover:bg-indigo-600/20 transition-colors">
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                            </div>
+                            <span class="font-bold">View API Docs</span>
+                        </div>
+                    </a>
+
                 </div>
             </div>
             </section>
 
         <!-- Use Cases Section (Ported from v1) -->
-        <section id="use-cases" class="py-24 relative">
+        <section id="use-cases" class="py-16 md:py-24 relative">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-5xl font-bold mb-6">Built for <span class="text-indigo-400">Every Use
@@ -556,7 +568,7 @@
         </section>
 
         <!-- Architecture / How it Works -->
-        <section id="how-it-works" class="py-24 relative overflow-hidden bg-slate-900/30">
+        <section id="how-it-works" class="py-16 md:py-24 relative overflow-hidden bg-slate-900/30">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-20">
                     <h2 class="text-3xl md:text-5xl font-bold mb-6">Advanced RAG Architecture</h2>
@@ -741,7 +753,7 @@
                 </section>
 
         <!-- Pricing -->
-        <section id="pricing" class="py-24">
+        <section id="pricing" class="py-16 md:py-24">
             <div class="max-w-7xl mx-auto px-6 text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-6">Pricing</h2>
                 <p class="text-slate-400 mb-2">Start free, scale indefinitely.</p>
@@ -861,6 +873,71 @@
 
         <!-- Load JS lazily -->
         <script src="static/script.js" defer></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const themeToggleBtn = document.getElementById('theme-toggle');
+                if (!themeToggleBtn) return;
+
+                // Clone button to remove existing listeners from static/script.js
+                const newBtn = themeToggleBtn.cloneNode(true);
+                themeToggleBtn.parentNode.replaceChild(newBtn, themeToggleBtn);
+
+                newBtn.addEventListener('click', async (e) => {
+                    // Fallback for browsers that don't support View Transitions
+                    if (!document.startViewTransition) {
+                        toggleTheme();
+                        return;
+                    }
+
+                    const x = e.clientX;
+                    const y = e.clientY;
+                    const endRadius = Math.hypot(
+                        Math.max(x, innerWidth - x),
+                        Math.max(y, innerHeight - y)
+                    );
+
+                    const transition = document.startViewTransition(() => {
+                        toggleTheme();
+                    });
+
+                    await transition.ready;
+
+                    // Animate the circular clip-path
+                    document.documentElement.animate(
+                        {
+                            clipPath: [
+                                `circle(0px at ${x}px ${y}px)`,
+                                `circle(${endRadius}px at ${x}px ${y}px)`,
+                            ],
+                        },
+                        {
+                            duration: 500,
+                            easing: 'ease-in',
+                            pseudoElement: '::view-transition-new(root)',
+                        }
+                    );
+                });
+
+                function toggleTheme() {
+                    const isLight = document.body.classList.toggle('light-mode');
+                    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+
+                    // Handle Icon Toggle
+                    const icon = document.getElementById('theme-icon');
+                    if (icon && window.lucide) {
+                        const iconName = isLight ? 'moon' : 'sun';
+                        const temp = document.createElement('div');
+                        temp.innerHTML = `<i data-lucide="${iconName}" id="theme-icon" class="w-5 h-5"></i>`;
+                        lucide.createIcons({ root: temp });
+                        const newIcon = temp.firstElementChild;
+                        if (newIcon) {
+                            icon.replaceWith(newIcon);
+                        }
+                    }
+                }
+            });
+        </script>
 
     </body>
 
