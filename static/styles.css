@@ -1,10 +1,253 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
+:root {
+    --bg-color: #020617;
+    --text-color: #e2e8f0;
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --bubble-bg: rgba(2, 6, 23, 0.2);
+    --bubble-scrolled-bg: rgba(2, 6, 23, 0.6);
+    --grid-line: rgba(255, 255, 255, 0.02);
+    --primary-color: #d97757;
+}
+
+.light-mode {
+    /* Changed from #f0eee6 to a softer off-white #fdfbf7 */
+    --bg-color: #f8f1e2;
+    --text-color: #0f172a;
+    /* Secondary/Card color #e3dacc */
+    --glass-bg: #e3dacc;
+    --glass-border: rgba(217, 119, 87, 0.2);
+    --bubble-bg: rgba(227, 218, 204, 0.8);
+    --bubble-scrolled-bg: #e3dacc;
+    --grid-line: rgba(0, 0, 0, 0.05);
+}
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #020617;
-    color: #f8fafc;
+    background-color: var(--bg-color);
+        color: var(--text-color);
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Light Mode Overrides for Tailwind Classes - High Contrast & Specificity */
+    .light-mode.text-slate-200,
+    .light-mode .text-slate-200 {
+        color: #1e293b !important;
+    }
+
+    .light-mode .text-slate-300 {
+        color: #334155 !important;
+    }
+
+    /* slate-800 */
+    .light-mode .text-slate-400 {
+        color: #475569 !important;
+    }
+
+    /* slate-600 */
+    .light-mode .text-slate-500 {
+        color: #64748b !important;
+    }
+
+    /* slate-500 */
+    .light-mode .text-slate-600 {
+        color: #475569 !important;
+    }
+
+    /* Card Backgrounds */
+    .light-mode .bg-slate-900 {
+        background-color: #e3dacc !important;
+        border-color: rgba(217, 119, 87, 0.2) !important;
+    }
+
+    .light-mode .bg-slate-950\/50 {
+        background-color: rgba(227, 218, 204, 0.5) !important;
+    }
+
+    /* Engine Node Labels - Fix dark highlight in light mode */
+    .light-mode .bg-slate-900\/80 {
+        background-color: rgba(227, 218, 204, 0.95) !important;
+        color: #0f172a !important;
+        /* Darkest slate for max contrast */
+        border: 1px solid rgba(217, 119, 87, 0.15);
+    }
+
+    /* Borders */
+    .light-mode .border-white\/5 {
+        border-color: rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .light-mode .border-white\/10 {
+        border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .light-mode .stroke-white\/10 {
+        stroke: rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Primary Color Overrides for Icons & Text (Global) */
+    .light-mode .text-indigo-400,
+    .light-mode .text-blue-400,
+    .light-mode .text-green-400,
+    .light-mode .text-purple-400,
+    .light-mode .text-pink-400,
+    .light-mode .text-orange-400,
+    .light-mode .text-teal-400,
+    .light-mode .text-violet-400,
+    .light-mode .text-cyan-400,
+    .light-mode .text-yellow-400 {
+        color: var(--primary-color) !important;
+    }
+
+    /* Pricing Section Specific Overrides (Restore Purple for Pro) */
+    .light-mode #pricing .text-indigo-400 {
+        color: #6366f1 !important;
+        /* Restore purple text */
+    }
+
+    .light-mode #pricing .border-indigo-500 {
+        border-color: #6366f1 !important;
+        /* Restore purple border */
+    }
+
+    .light-mode #pricing .bg-indigo-900\/10 {
+        background-color: rgba(99, 102, 241, 0.1) !important;
+        /* Light purple bg */
+    }
+
+    .light-mode #pricing .bg-indigo-500 {
+        background-color: #6366f1 !important;
+        /* Restore purple tag */
+    }
+
+    /* Pricing Buttons */
+    .light-mode #pricing .bg-slate-800 {
+        background-color: #1e293b !important;
+        /* Dark button for Starter */
+        color: #ffffff !important;
+    }
+
+    .light-mode #pricing button.bg-indigo-600\/50 {
+        background-color: #818cf8 !important;
+        /* Purple button for Pro */
+        color: #ffffff !important;
+        opacity: 1 !important;
+        /* Make it look active */
+    }
+
+    .light-mode #pricing button.bg-slate-800\/50 {
+        background-color: #94a3b8 !important;
+        /* Grey button for Enterprise */
+        color: #f1f5f9 !important;
+    }
+
+    /* Feature Card Terminal Text - Black in Light Mode */
+    .light-mode .bg-black\/30.text-green-400 {
+        color: #000000 !important;
+        background-color: rgba(0, 0, 0, 0.05) !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Pill Backgrounds */
+    .light-mode .bg-indigo-500\/10,
+    .light-mode .bg-green-500\/10,
+    .light-mode .bg-indigo-500\/20,
+    .light-mode .bg-blue-500\/20,
+    .light-mode .bg-green-500\/20,
+    .light-mode .bg-purple-500\/20,
+    .light-mode .bg-pink-500\/20,
+    .light-mode .bg-orange-500\/20,
+    .light-mode .bg-teal-500\/20,
+    .light-mode .bg-violet-500\/20,
+    .light-mode .bg-cyan-500\/20,
+    .light-mode .bg-yellow-500\/20 {
+        background-color: rgba(217, 119, 87, 0.1) !important;
+        border-color: rgba(217, 119, 87, 0.2) !important;
+    }
+
+    /* Gradient Text Override */
+    .light-mode .bg-clip-text {
+        background-image: none !important;
+        -webkit-text-fill-color: var(--primary-color) !important;
+        color: var(--primary-color) !important;
+    }
+
+    .light-mode .glow-text {
+        text-shadow: none !important;
+    }
+
+    /* Buttons (General) */
+    .light-mode .bg-indigo-600 {
+        background-color: var(--primary-color) !important;
+        color: #fff !important;
+    }
+
+    .light-mode .bg-indigo-600:hover {
+        background-color: #c0664b !important;
+    }
+
+    /* Footer */
+    .light-mode footer {
+        background-color: #e3dacc !important;
+        border-top-color: rgba(217, 119, 87, 0.1) !important;
+    }
+
+    /* Footer Specific High Contrast */
+    .light-mode footer .text-slate-500,
+    .light-mode footer .text-slate-600 {
+        color: #1e293b !important;
+        /* Dark slate for better legibility on beige */
+    }
+
+    .light-mode footer a:hover {
+        color: var(--primary-color) !important;
+    }
+
+    .light-mode footer .bg-slate-800 {
+        background-color: #0f172a !important;
+        /* Ensure logo bg remains dark */
+        color: #ffffff !important;
+    }
+
+    .light-mode #theme-toggle {
+        color: var(--primary-color);
+    }
+
+#loader {
+    background-color: var(--bg-color) !important;
+}
+/* SVG Diagram Overrides */
+    .light-mode #connection-markers circle {
+        fill: var(--primary-color) !important;
+    }
+
+    .light-mode .beam-path {
+        stroke: var(--primary-color) !important;
+        filter: none !important;
+    }
+
+    .light-mode #static-tracks path {
+        stroke: rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* Engine Labels - Dark and Legible */
+    .light-mode #path-labels text {
+        fill: #1e293b !important;
+        /* Dark slate/black */
+        font-weight: 700;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+    }
+
+    /* Invert CTA button in light mode */
+    .light-mode a[href="https://console.soarlabs.tech"].bg-white {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+    }
+
+    .light-mode a[href="https://console.soarlabs.tech"].bg-white:hover {
+        background-color: #1e293b !important;
 }
 
 .font-mono {
@@ -17,7 +260,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #020617;
+    background: var(--bg-color);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -25,31 +268,35 @@ body {
     border-radius: 4px;
 }
 
+.light-mode ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+}
 ::-webkit-scrollbar-thumb:hover {
     background: #475569;
 }
 
 .glass-panel {
-    background: rgba(15, 23, 42, 0.6);
+    background: var(--glass-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 /* New Glass Bubble Styles */
 .glass-bubble {
-    background: rgba(2, 6, 23, 0.2);
+    background: var(--bubble-bg);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
     transition: all 0.5s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .glass-bubble.scrolled {
-    background: rgba(2, 6, 23, 0.6);
+    background: var(--bubble-scrolled-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
 }
 
@@ -59,8 +306,8 @@ body {
 
 .grid-bg {
     background-size: 50px 50px;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
 }
 
 /* Animation Utilities */
